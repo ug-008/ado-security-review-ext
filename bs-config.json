@@ -1,0 +1,9 @@
+{
+    "injectChanges": false,
+    "files": [ "./**/*.{html,htm,css,js, woff, woff2, ttf}" ],
+    "watchOptions": { "ignored": "node_modules" },
+    "server": {
+      "baseDir": "./dist/SRComponent"
+    }
+}
+  

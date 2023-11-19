@@ -1,0 +1,17 @@
+[
+    {
+        "age": 50,
+        "gender": "M",
+        "name": {"text": "Rory Boisvert" }
+    },
+    {
+        "age": 49,
+        "gender": "F",
+        "name": { "iconProps": { "iconName": "Home", "ariaLabel": "Home" }, "text": "Sharon Monroe" }
+    },
+    {
+        "age": 18,
+        "gender": "F",
+        "name": { "iconProps": { "iconName": "Home", "ariaLabel": "Home" }, "text": "Lucy Booth" }
+    }
+]

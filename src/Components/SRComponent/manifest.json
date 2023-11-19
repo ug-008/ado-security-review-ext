@@ -1,0 +1,40 @@
+{
+    "contributions": [
+        {
+            "id": "sr-feature",
+            "type": "ms.vss-web.feature",
+            "description": "Hide page on all projects by default",
+            "targets": [ "ms.vss-web.managed-features" ],
+            "properties": {
+                "name": " SmartSR Page Switch",
+                "userConfigurable": false,
+                "hostConfigurable": true,
+                "hostScopes": [ "project" ],
+                "defaultState": false
+            }
+        },
+        {
+            "id": "smart-security-review",
+            "type": "ms.vss-work-web.work-item-form-page",
+            "description": "A smart security review checklist",
+            "targets": [
+                "ms.vss-work-web.work-item-form"
+            ],
+            "properties": {
+                "name": "Security Review",
+                "uri": "dist/SRComponent/index.html"
+            },
+            "constraints": [
+                {
+                    "name": "Feature",
+                    "properties": {
+                        "featureId": "SmartSR.smart-security-review.sr-feature"
+                    }
+                }
+            ]
+        }
+    ],
+    "scopes": [
+        "vso.work"
+    ]
+}

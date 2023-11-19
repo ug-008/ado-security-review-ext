@@ -1,0 +1,154 @@
+.custom-root {
+    overflow: scroll;
+    position: relative;
+}
+
+.src-custom-contextMenu {
+    position: relative;
+    width: fit-content;
+    background: var(--background-color, rgb(255, 255, 255));
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+    margin: 0;
+}
+
+.bolt-menuitem-cell-text {
+    max-width: max-content;
+    min-width: 100px;
+    padding-right: 20px;
+}
+
+.src-custom-contextMenu .src-custom-opaque {
+    opacity: .8;
+}
+ 
+.src-custom-contextMenu .src-custom-marginTop {
+    margin-top: 5px;
+}
+ 
+.src-custom-fluentui-icon {
+    opacity: .75;
+    font-weight: 700;
+}
+
+.src-custom-fluentui-icon:disabled {
+    color: red;
+}
+
+.src-custome-header-title-area {
+    margin-bottom: 10px;
+}
+
+.custom-root .sr-page.bolt-page {
+    margin: 0;
+    padding: 0;
+    min-width: 100%;
+}
+
+.custom-root .sr-page.bolt-page .bolt-header.custom-bolt-header-without-commandbar {
+    position: fixed;
+    flex-direction: column;
+    z-index: 10;
+    background: var(--background-color,rgba(255, 255, 255, 1));
+    margin: 0;
+    padding: 5px 0;
+    display: flex;
+    border-bottom: 1px solid var(--component-grid-cell-bottom-border-color,rgba(234, 234, 234, 1));
+}
+
+.custom-root .sr-page.bolt-page .bolt-header.custom-bolt-header-without-commandbar .src-header-title {
+    margin-right: 0.5px;
+}
+
+.custom-root .sr-page.bolt-page .bolt-header.custom-bolt-header-without-commandbar .src-header-title:hover {
+    text-decoration: underline;
+}
+
+.custom-root .sr-page.bolt-page .page-content table.bolt-table thead {
+    z-index: 8;
+    position: relative;
+    background: var(--background-color,rgba(255, 255, 255, 1));
+}
+
+.sr-page.bolt-page .bolt-header .bolt-header-title-area.flex-grow {
+    flex-grow: 1
+}
+
+.sr-page.bolt-page .vss-FilterBar.custom-bolt-filter-with-commandbar {
+    margin: 0;
+    padding: 5px;
+    min-height: 45px;
+    max-height: 45px;
+    background-color: var(--background-color,rgba(255, 255, 255, 1));
+    border: 1px solid var(--component-grid-cell-bottom-border-color,rgba(234, 234, 234, 1));
+    border-radius: 5px;
+    flex: 1;
+}
+
+.sr-page.bolt-page .vss-FilterBar.custom-bolt-filter-with-commandbar .bolt-textfield {
+    box-shadow: none;
+}
+
+.sr-page.bolt-page .page-content {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.sr-page.bolt-page .page-content div.custom-bolt-header-with-commandbar {
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    border-bottom: 1px solid var(--component-grid-cell-bottom-border-color,rgba(234, 234, 234, 1));
+}
+
+.sr-page.bolt-page .page-content table tbody .bolt-status-extended.src-status-wrapper {
+    padding-left: 5px;
+}
+
+.sr-page.bolt-page .page-content table tbody .bolt-status-extended.src-status-wrapper span.bolt-status-text {
+    padding: 5px 15px 5px 2.5px;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+/*
+.sr-page.bolt-page .page-content .bolt-table-row .bolt-table-cell,
+.sr-page.bolt-page .page-content .bolt-table-header-row .bolt-table-header-cell,
+.sr-page.bolt-page .page-content .bolt-table-row .bolt-table-cell:nth-child(8) {
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-color: var(--component-grid-cell-bottom-border-color,rgba(234, 234, 234, 1));
+}
+
+.sr-page.bolt-page .page-content .bolt-table-header-row .bolt-table-header-cell {
+    border-width: 1px 0 1px 1px;
+}
+
+.sr-page.bolt-page .page-content .bolt-table-row .bolt-table-cell:nth-child(1),
+.sr-page.bolt-page .page-content .bolt-table-header-row .bolt-table-header-cell:nth-child(1) {
+    border-width: 0;
+}
+
+.sr-page.bolt-page .page-content .bolt-table-row .bolt-table-cell:nth-child(7),
+.sr-page.bolt-page .page-content .bolt-table-row .bolt-table-cell:nth-child(8) {
+    border-width: 0 0 1px 0;
+}
+
+.sr-page.bolt-page .page-content .bolt-table-header-row .bolt-table-header-cell:nth-child(7),
+.sr-page.bolt-page .page-content .bolt-table-header-row .bolt-table-header-border:nth-child(8) {
+    border-width: 1px 0 1px 0;
+}
+
+.sr-page.bolt-page .page-content .bolt-table-header-row .bolt-table-header-border:first-child {
+    border-bottom: 0 solid transparent
+}
+
+.sr-page.bolt-page .page-content table.bolt-table tbody .test-status-container {
+    align-items: center;
+}
+
+.sr-page.bolt-page .page-content table.bolt-table tbody .test-status-container .test-status {
+    margin: 10px;
+} */
