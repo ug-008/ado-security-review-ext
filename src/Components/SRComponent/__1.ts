@@ -1,4 +1,5 @@
-import { ITableItem } from "./__7_TableProperties";
+import { ObservableArray } from "azure-devops-ui/Core/Observable";
+import { ITableItem } from "./TableComponent.d";
 
 export type ChecklistProps = {
     url: string;
@@ -37,10 +38,17 @@ export const fetchChecklist = (url: string, callback: (items: ITableItem[])=> vo
              */
             categories[category]?.tests.forEach(
                 (e: any, i: number) => {
-                    e.status = 'New'
+                    e.id = e.id
+                    e.name = e.name
+                    e.objectives = e.objectives;
+                    e.reference = e.reference;
                     e.categoryName = name
                     e.categoryId = id
-                    e.index = items.length
+                    e.status = 'New'
+                    e.metadata = {
+                        selected: false,
+                        index: items.length
+                    }
                     items.push(e) // Add item to ITableItem[]
                 }
             )
@@ -84,14 +92,27 @@ export const contextMenuAnchorPoint = (e: React.MouseEvent, thisArg: any) => {
     return anchorPoint
 }
 
-export function listenScrollEvent(event: any) {
-    let _scrollTop = event.target.scrollTop,
-        _translate = "translateY("+(_scrollTop-0)+"px)",
-        _boxShadow = "rgba(0, 0, 0, 0.2) 4px 10px 10px -5px",
-        _thead = event.target.querySelector("thead");
-    _thead.style.opacity = 0
-    _thead.style.transform = _translate;
-    _thead.style.boxShadow = _scrollTop ? _boxShadow:'none';
-    _thead.style.opacity = 1
-    return _thead
+/**
+ * 
+ * @param e 
+ * @returns 
+ */
+export const ObservableArrayWrapper = (e: any) => new ObservableArray<any>(e);
+
+/**
+ * Coompare two maps
+ * @param map1 
+ * @param map2 
+ * @returns 
+ */
+export function compareMaps(map1: Map<number, ITableItem>, map2: Map<number, ITableItem>) {
+    if (map1.size !== map2.size) {
+        return false;
+    }
+    for (const [key, value] of map1) {
+        if (!map2.has(key) || map2.get(key) !== value) {
+            return false;
+        }
+    }
+    return true;
 }

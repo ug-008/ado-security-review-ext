@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Status, Statuses, StatusSize } from "azure-devops-ui/Status";
-import { ITableItem } from "./__7_TableProperties";
+import { ITableItem } from "./TableComponent.d";
 
 export default class TableItemStatus extends React.Component<{item: ITableItem, rowIndex?: number}, {}> {
 
@@ -14,7 +14,9 @@ export default class TableItemStatus extends React.Component<{item: ITableItem, 
             case 'Failed': sProps = {...Statuses.Failed}
             break
             case 'New': 
-            default: sProps = {...Statuses.Running}
+            default: 
+                sProps = {...Statuses.Running}
+                status = "New"
         }
         
         return (
@@ -26,7 +28,6 @@ export default class TableItemStatus extends React.Component<{item: ITableItem, 
                         size={StatusSize.m}
                         className="src-status-wrapper"
                         text={status as string} />
-                    {/* <span>{status}</span>                */}
                 </div>
             </td>
         );

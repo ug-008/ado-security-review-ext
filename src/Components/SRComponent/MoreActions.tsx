@@ -1,28 +1,7 @@
-import { AccessTimeFilled, ClearFormattingRegular, ClosedCaptionRegular, FilterRegular, Multiplier12XRegular } from "@fluentui/react-icons";
+import { MenuItemType } from "azure-devops-ui/Menu";
 import { IHeaderCommandBarItem } from "azure-devops-ui/HeaderCommandBar";
-import { IMenuItem, MenuItemType } from "azure-devops-ui/Menu";
-import { Status, Statuses, StatusSize } from "azure-devops-ui/Status";
-import React, { createElement } from "react";
-import { ITableItem } from "./__7_TableProperties";
-import FilterBarComponent from "./__4_HeaderFilterBar";
 
-const changeBulkStatus = (_this: FilterBarComponent, txt: string)=> {
-    let sortedList = _this.context?.sortedList.value as ITableItem[];
-    if(sortedList) {
-        _this.context?.selectedItems.forEach((t: ITableItem) => {
-            t.status = txt
-            _this.context?.selection.addUnselectable(t.index)
-        })
-        console.log(_this.context?.selection)
-        // _this.context?.setSortedList(sortedList, ()=> {
-        //     let endIndex = sortedList.length - 1
-        //     _this.context?.selection.unselect(0, endIndex)
-        //    // _this.context?.selection.select(selectedIndex)
-        // })
-    }
-}
-
-export const commandBarItems = (_this: FilterBarComponent):IHeaderCommandBarItem[] => [
+export const commandBarItems = (_this: any):IHeaderCommandBarItem[] => [
     {
         id: "sr-export-xlsx",
         text: "Export",
@@ -31,7 +10,16 @@ export const commandBarItems = (_this: FilterBarComponent):IHeaderCommandBarItem
             iconName: "Download" 
         }
     },
+    { id: "separator", itemType: MenuItemType.Divider },
     {
+        id: "sr-export-xlsx",
+        text: "Reload Page",
+        disabled: true,
+        iconProps: { 
+            iconName: "Refresh" 
+        }
+    },
+    /*{
         id: "sr-clear-all-filter",
         text: "Clear Filter",
         iconProps: { 
@@ -95,7 +83,7 @@ export const commandBarItems = (_this: FilterBarComponent):IHeaderCommandBarItem
         iconProps: { 
             iconName: "Settings" 
         }, 
-    }
+    }*/
 ];
     
 

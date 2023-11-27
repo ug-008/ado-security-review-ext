@@ -8,14 +8,15 @@ import {
     SimpleTableCell,
     TableColumnLayout,
 } from "azure-devops-ui/Table";
-import { css } from "azure-devops-ui/Util";
-import { IMenuItem, MenuItemType } from "azure-devops-ui/Menu";
+import { IMenuItem } from "azure-devops-ui/Menu";
 import { ISimpleListCell } from "azure-devops-ui/List";
-import { IReadonlyObservableValue, ObservableArray, ObservableValue } from "azure-devops-ui/Core/Observable";
 import { Icon } from "azure-devops-ui/Icon";
-import TableItemStatus from "./__8_TableItemStatus";
+import TableItemStatus from "./TableStatusRender";
 import { RefObject } from "react";
 import { ExpandableButton } from "azure-devops-ui/Button";
+import { Status, Statuses, StatusSize } from "azure-devops-ui/Status";
+import TableComponent from "./TableComponent";
+import { ObservableArrayWrapper } from "./__1";
 
 export interface ITableItem extends ISimpleTableCell {
     id: string;
@@ -24,11 +25,18 @@ export interface ITableItem extends ISimpleTableCell {
     reference: string;
     categoryName: string;
     categoryId: string;
-    index: number;
+    status: string;
+    metadata: {
+        ref?: React.RefObject<any>
+        index?: number
+        selected?: boolean
+    }
 }
 
-export const columnSchema = (context: any)=> [
-    new ColumnSelect() as unknown as ITableColumn<ITableItem>,
+export const columnSchema = (_this: TableComponent)=> [
+    new ColumnSelect({
+        callback: _this.afterComponentUpdate
+    }) as unknown as ITableColumn<ITableItem>,
     {
         columnLayout: TableColumnLayout.singleLinePrefix,
         id: "id",
@@ -62,22 +70,24 @@ export const columnSchema = (context: any)=> [
         width: 120,
         maxWidth: 200,
     },
-    new ColumnMore<ITableItem>((listItem: ITableItem, rowIndex: number, buttonRef: RefObject<ExpandableButton>) => {
+    new ColumnMore((_item: ITableItem, _rowIndex: number, _buttonRef: RefObject<ExpandableButton>) => {
         return {
             id: "sub-menu",
             items: [
-                { id: "test-status-1", text: "Pass" },
-                { id: "test-status-2", text: "Failed" },
+                {id: "test-status-1", text: "Pass", iconProps: { render: (cls)=> <Status {...Statuses.Success} size={StatusSize.m}/> }},
+                {id: "test-status-2", text: "Failed", iconProps: { render: (cls)=> <Status {...Statuses.Failed} size={StatusSize.m}/> }},
+                {id: "test-status-3", text: "N/A", iconProps: { render: (cls)=> <Status {...Statuses.Skipped} size={StatusSize.m}/> }},
+                {id: "test-status-4", text: "Default", iconProps: { render: (cls)=> <Status {...Statuses.Queued} size={StatusSize.m}/> }},
             ],
             onActivate: (menuItem: IMenuItem, event?: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLElement> | undefined)=> {
-                let txt = menuItem.text
-                if(txt && listItem.status) {
-                    listItem.status = (menuItem.text as string)
-                    context?.setSortedList(context.sortedList.value, ()=> {
-                        let endIndex = context?.sortedList.value.length - 1
-                        context?.selection.unselect(0, endIndex)
-                        context?.selection.select(rowIndex)
-                    })
+                const _selectedRows: Map<number, ITableItem> = _this.context!.selectedItems
+                if(_selectedRows.size) {
+                    Array.from(_selectedRows.values()).forEach(t=> t.status = menuItem.text!)
+                    var sortedList = ObservableArrayWrapper(_this.context?.sortedList.value as ITableItem[])
+                    _this.context?.setStateImpl({sortedList}, ()=> _this.forceUpdate(()=> {_this.forceUpdate()}))
+                }
+                else {
+                    // Todo: Caution-> Select one or more items
                 }
             }
         }

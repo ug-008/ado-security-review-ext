@@ -33,6 +33,7 @@
     "azure-devops-extension-api": "^2.218.0",
     "azure-devops-extension-sdk": "^3.1.2",
     "azure-devops-ui": "^2.167.63",
+    "mobx": "^6.11.0",
     "react": "~16.13.1",
     "react-dom": "~16.13.1"
   },
